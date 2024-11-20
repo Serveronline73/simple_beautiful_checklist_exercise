@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_beautiful_checklist_exercise/shared/database_repository.dart';
-import 'package:simple_beautiful_checklist_exercise/shared/mock_database.dart';
+import 'package:simple_beautiful_checklist_exercise/shared/shared_prefences_Repository.dart';
 
 import 'features/splash/splash_screen.dart';
 import 'home_screen.dart';
@@ -9,10 +9,8 @@ import 'home_screen.dart';
 void main() async {
   // Wird benötigt, um auf SharedPreferences zuzugreifen
   WidgetsFlutterBinding.ensureInitialized();
-
   // TODO: Hier statt MockDatabase() ein SharedPreferencesRepository() verwenden.
-  final DatabaseRepository repository = MockDatabase();
-
+  final DatabaseRepository repository = SharedPreferencesRepository();
   runApp(MainApp(repository: repository));
 }
 
@@ -21,9 +19,7 @@ class MainApp extends StatelessWidget {
     super.key,
     required this.repository,
   });
-
   final DatabaseRepository repository;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,7 +34,8 @@ class MainApp extends StatelessWidget {
           ThemeData(brightness: Brightness.dark).textTheme,
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode
+          .dark, // Ich habe hier Theme.system auf Theme.dark geändert damit es immer im Dark Mode startet
       title: 'Checklisten App',
       initialRoute: '/',
       routes: {
