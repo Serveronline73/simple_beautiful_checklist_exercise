@@ -26,7 +26,8 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
-        textTheme: GoogleFonts.robotoMonoTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts
+            .robotoMonoTextTheme(), // im Klammern habe theme.of..... gelöscht
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -34,8 +35,7 @@ class MainApp extends StatelessWidget {
           ThemeData(brightness: Brightness.dark).textTheme,
         ),
       ),
-      themeMode: ThemeMode
-          .dark, // Ich habe hier Theme.system auf Theme.dark geändert damit es immer im Dark Mode startet
+      themeMode: ThemeMode.system,
       title: 'Checklisten App',
       initialRoute: '/',
       routes: {
